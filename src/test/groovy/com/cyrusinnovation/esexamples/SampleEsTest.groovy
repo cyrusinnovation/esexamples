@@ -18,6 +18,7 @@ public class SampleEsTest extends EsBaseTest {
         println(path)
         def airportLocations = new File(path).readLines()
                                   .drop(1) //kill header
+                                  .take(100)
                                   .collect {
             def line = it.split(",")
             new Airport(line[0], line[1], line[2])
