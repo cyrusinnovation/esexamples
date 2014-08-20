@@ -1,3 +1,7 @@
 language: java
 jdk:
   - oraclejdk8
+notifications:
+  slack: {
+    secure: "aOfQmCEHoLaCOiAMUccOtSAvQ2cRQkJT+Rz6+eFbm+FUHzZgKBeA4LK2XiVqITyIFEcyfuSj7aLo9FXh9VRfiK/aHrNYn5j6AH8V/dlL2ZJog439fGMk2Cf06AY242fjMxX+QV32jBd6y1a4WvH71E+s7YtyeHa/gdmq7S6yP0Y="
+  }
