@@ -7,6 +7,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/groovy" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/groovy" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/webapp" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
@@ -20,6 +21,22 @@
     <orderEntry type="library" name="Maven: joda-time:joda-time:2.4" level="project" />
     <orderEntry type="library" name="Maven: ch.qos.logback:logback-classic:1.1.2" level="project" />
     <orderEntry type="library" name="Maven: ch.qos.logback:logback-core:1.1.2" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-webapp:9.2.2.v20140723" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-xml:9.2.2.v20140723" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-util:9.2.2.v20140723" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-servlet:9.2.2.v20140723" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-security:9.2.2.v20140723" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-server:9.2.2.v20140723" level="project" />
+    <orderEntry type="library" name="Maven: javax.servlet:javax.servlet-api:3.1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-http:9.2.2.v20140723" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-io:9.2.2.v20140723" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-annotations:9.2.2.v20140723" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-plus:9.2.2.v20140723" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-jndi:9.2.2.v20140723" level="project" />
+    <orderEntry type="library" name="Maven: javax.annotation:javax.annotation-api:1.2" level="project" />
+    <orderEntry type="library" name="Maven: org.ow2.asm:asm:5.0.1" level="project" />
+    <orderEntry type="library" name="Maven: org.ow2.asm:asm-commons:5.0.1" level="project" />
+    <orderEntry type="library" name="Maven: org.ow2.asm:asm-tree:5.0.1" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.7" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:jcl-over-slf4j:1.7.7" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:log4j-over-slf4j:1.7.7" level="project" />
@@ -54,8 +71,6 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.apache.lucene:lucene-spatial:4.9.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.spatial4j:spatial4j:0.4.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.antlr:antlr-runtime:3.5" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.ow2.asm:asm:4.1" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.ow2.asm:asm-commons:4.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.elasticsearch:elasticsearch:1.3.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-library:1.3" level="project" />

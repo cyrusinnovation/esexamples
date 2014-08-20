@@ -4,3 +4,8 @@ jdk:
 notifications:
   slack:
     secure: "aOfQmCEHoLaCOiAMUccOtSAvQ2cRQkJT+Rz6+eFbm+FUHzZgKBeA4LK2XiVqITyIFEcyfuSj7aLo9FXh9VRfiK/aHrNYn5j6AH8V/dlL2ZJog439fGMk2Cf06AY242fjMxX+QV32jBd6y1a4WvH71E+s7YtyeHa/gdmq7S6yP0Y="
+deploy:
+  provider: heroku
+  api_key:
+    secure: "RO/ApUedNCxQYkTo1aRlXeY11Enag9N78nXsRtcWfmJS1r6tSpoGRUhrQjHm7c745eLoFowbtfx4AF4s7oyFXzwnQ6gWQlc2yeesc6P2avUiJcNk+PNwo71z1aKe84ZablhmPrR8GBu1yW+KvL0LO9mEPl39jun/bVNBPZfkjWA="
+  app: esexamples
