@@ -13,7 +13,7 @@ import org.eclipse.jetty.webapp.WebAppContext
 
 class Main {
     public static void main(String[] args) {
-        def port = System.getProperty("PORT", "8085").toInteger()
+        def port = (System.getenv("PORT") ?: "8085").toInteger()
         def server = new Server()
         setupConnector(server, port)
         def handler = getServletContextHandler(server, Main.getClass().getResource("/esexamples/").path)
