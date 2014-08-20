@@ -1,36 +1,72 @@
 package com.cyrusinnovation.esexamples
 
-import io.searchbox.client.JestClientFactory
-import io.searchbox.client.config.HttpClientConfig
-import io.searchbox.client.http.JestHttpClient
-import io.searchbox.indices.IndicesExists
+import com.cyrusinnovation.esexamples.entities.Airport
+import io.searchbox.core.Bulk
+import io.searchbox.core.Index
+import io.searchbox.core.Search
+import org.junit.After
+import org.junit.Before
 import org.junit.Test
 
-import java.util.concurrent.TimeUnit
-
 public class SampleEsTest extends EsBaseTest {
-    private static final String TestIndexName = "test-index"
+    private static final String path = SampleEsTest.getClass().getResource("/AirportCodesUs.csv").path
+    private static final String IndexName = "locations"
+    private static final String IndexTypeName = "location"
 
     @Test
     def "can insert documents and query for them"() {
-        this.createIndex(TestIndexName)
+        println(path)
+        def airportLocations = new File(path).readLines()
+                                  .drop(1) //kill header
+                                  .collect {
+            def line = it.split(",")
+            new Airport(line[0], line[1], line[2])
+        }
+        def indexAction = new Bulk.Builder()
+        airportLocations.each {
+            indexAction.addAction(new Index.Builder(it).index(IndexName).type(IndexTypeName).build())
+        }
+        def indexResult = jestHttpClient.execute(indexAction.build())
+        assertTrue(indexResult.errorMessage, indexResult.isSucceeded())
 
-        def factory = new JestClientFactory()
-        factory.setHttpClientConfig(new HttpClientConfig
-                .Builder("http://localhost:9200")
-                .discoveryEnabled(false)
-                .discoveryFrequency(500l, TimeUnit.MILLISECONDS).build())
-        def jestClient = (JestHttpClient) factory.getObject()
-
-        def result = jestClient.execute(new IndicesExists.Builder(TestIndexName).build())
-        def result2 = jestClient.execute(new IndicesExists.Builder(TestIndexName + "2").build())
-
-        def asBoolean = result.jsonObject.get('found').asBoolean
-        def asBoolean2 = result2.jsonObject.get('found').asBoolean
-
-        assertTrue("Could not execute index exists query", asBoolean)
-        assertFalse("Could not execute index exists query", asBoolean2)
-        jestClient.shutdownClient()
+        def searchAction = new Search.Builder("""
+{
+    "query" : {
+        "match_all" : { }
     }
 }
+""").build()
+        refreshIndices(IndexName)
+        def searchResult = jestHttpClient.execute(searchAction)
+        println(searchResult.jsonString)
+        assertTrue(searchResult.errorMessage, searchResult.succeeded)
+        searchResult.getHits(Airport).each {
+            println(it.source)
+        }
+    }
+
+    @Before
+    private void createTestIndex() {
+        def mapping = """
+{
+    {
+        "properties" : {
+            "coordinates" : {
+                "type" : "geo_point"
+            }
+        }
+    }
+}
+"""
+        this.prepareCreate(IndexName)
+            .addMapping(IndexTypeName, mapping)
+            .execute()
+    }
+
+    @After
+    private void destroyTestIndex() {
+        cluster().wipeIndices(IndexName)
+    }
+}
+
 
