@@ -15,14 +15,7 @@ public class SampleEsTest extends EsBaseTest {
 
     @Test
     def "can insert documents and query for them"() {
-        println(path)
-        def airportLocations = new File(path).readLines()
-                                  .drop(1) //kill header
-                                  .take(100)
-                                  .collect {
-            def line = it.split(",")
-            new Airport(line[0], line[1], line[2])
-        }
+        def airportLocations = collectAirportsFromFile(10)
         def indexAction = new Bulk.Builder()
         airportLocations.each {
             indexAction.addAction(new Index.Builder(it).index(IndexName).type(IndexTypeName).build())
@@ -41,8 +34,15 @@ public class SampleEsTest extends EsBaseTest {
         def searchResult = jestHttpClient.execute(searchAction)
         println(searchResult.jsonString)
         assertTrue(searchResult.errorMessage, searchResult.succeeded)
-        searchResult.getHits(Airport).each {
-            println(it.source)
+    }
+
+    private static List<Airport> collectAirportsFromFile(Integer airportsToRead) {
+        new File(path).readLines()
+                .drop(1) //kill header
+                .take(airportsToRead)
+                .collect {
+            def line = it.split(",")
+            new Airport(line[0], line[1], line[2])
         }
     }
 
