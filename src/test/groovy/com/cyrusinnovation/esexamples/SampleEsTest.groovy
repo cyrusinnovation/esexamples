@@ -8,7 +8,7 @@ import org.junit.Test
 
 import java.util.concurrent.TimeUnit
 
-public class SampleEsSpecification extends EsBaseSpecification {
+public class SampleEsTest extends EsBaseTest {
     private static final String TestIndexName = "test-index"
 
     @Test
